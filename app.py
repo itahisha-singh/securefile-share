@@ -391,4 +391,6 @@ def open_share(token):
 if __name__ == "__main__":
     with app.app_context():
         database.init_db()
-    app.run(debug=True)   # debug=True is for local development only
+
+    debug_mode = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
+    app.run(debug=debug_mode)
