@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Share: {{ file.original_name }}</h3>
+
+{% if new_link %}
+<div class="flash">
+  <b>Secure link (copy it now, it won't be shown again):</b><br>
+  <input type="text" value="{{ new_link }}" readonly onclick="this.select()">
+  Also share the encryption key with the recipient through a different channel.
+</div>
+{% endif %}
+
+<form method="post">
+  <input type="email" name="email" placeholder="Recipient email" required>
+  <label><input type="checkbox" name="can_download" style="width:auto"> Allow download (otherwise view-only)</label>
+  <input type="number" name="hours" value="24" min="1" max="720">
+  <small>Link expires after this many hours (1 to 720)</small>
+  <button type="submit">Create secure link</button>
+</form>
+
+<h4>Existing shares</h4>
+<table border="1" cellpadding="6" style="border-collapse:collapse;width:100%">
+  <tr><th>Recipient</th><th>Download</th><th>Status</th><th></th></tr>
+  {% for s in shares %}
+  <tr>
+    <td>{{ s.recipient_email }}</td>
+    <td>{{ "Yes" if s.can_download else "View only" }}</td>
+    <td>
+      {% if s.revoked %}Revoked
+      {% elif s.expires_at < now %}Expired
+      {% else %}Active{% endif %}
+    </td>
+    <td>
+      {% if not s.revoked and s.expires_at >= now %}
+      <form method="post" action="{{ url_for('revoke', share_id=s.id) }}" style="margin:0">
+        <button type="submit">Revoke</button>
+      </form>
+      {% endif %}
+    </td>
+  </tr>
+  {% else %}
+  <tr><td colspan="4">Not shared with anyone yet.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

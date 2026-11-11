@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Upload file</h3>
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="file" required>
+  <select name="classification" style="width:100%;padding:10px;margin:6px 0">
+    {% for c in classes %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+  </select>
+  <input type="password" name="passphrase"
+         placeholder="Encryption key (required unless Public)">
+  <button type="submit">Classify, encrypt and upload</button>
+</form>
+<p><small>If you lose the key, the file cannot be recovered.</small></p>
+{% endblock %}

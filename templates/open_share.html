@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>{{ s.original_name }}</h3>
+<p>Classification: <b>{{ s.classification }}</b></p>
+<form method="post">
+  {% if s.encrypted %}
+  <input type="password" name="passphrase" placeholder="Encryption key" required>
+  {% endif %}
+  <button type="submit" name="action" value="view">View</button>
+  {% if s.can_download %}
+  <button type="submit" name="action" value="download">Download</button>
+  {% endif %}
+</form>
+{% endblock %}

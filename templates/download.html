@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Decrypt {{ file.original_name }}</h3>
+<form method="post">
+  <input type="password" name="passphrase" placeholder="Encryption key" required>
+  <button type="submit">Decrypt and download</button>
+</form>
+{% endblock %}

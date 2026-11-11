@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Shared with me</h3>
+<p>Open the link the owner sent you to access a file.</p>
+<table border="1" cellpadding="6" style="border-collapse:collapse;width:100%">
+  <tr><th>File</th><th>Class</th><th>Download allowed</th></tr>
+  {% for s in shares %}
+  <tr>
+    <td>{{ s.original_name }}</td>
+    <td>{{ s.classification }}</td>
+    <td>{{ "Yes" if s.can_download else "View only" }}</td>
+  </tr>
+  {% else %}
+  <tr><td colspan="3">Nothing shared with you.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

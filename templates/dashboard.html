@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Welcome, {{ current_user.email }}</h3>
+<p><a href="{{ url_for('upload') }}">+ Upload a file</a></p>
+<table border="1" cellpadding="6" style="border-collapse:collapse;width:100%">
+  <tr><th>File</th><th>Class</th><th>Encrypted</th><th>Uploaded</th><th></th><th></th></tr>
+  {% for f in files %}
+  <tr>
+    <td>{{ f.original_name }}</td>
+    <td>{{ f.classification }}</td>
+    <td>{{ "Yes (AES-256-GCM)" if f.encrypted else "No" }}</td>
+    <td>{{ f.created_at }}</td>
+    <td><a href="{{ url_for('download', file_id=f.id) }}">Download</a></td>
+    <td><a href="{{ url_for('share', file_id=f.id) }}">Share</a></td>
+  </tr>
+  {% else %}
+  <tr><td colspan="6">No files yet.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
