@@ -52,7 +52,11 @@ def load_user(user_id):
 
 # ---------- OTP helpers ----------
 def hash_otp(code):
-    return hashlib.sha256(code.encode()).hexdigest()
+    return hmac.new(
+        app.config["SECRET_KEY"].encode(),
+        code.encode(),
+        hashlib.sha256
+    ).hexdigest()
 
 
 def create_otp(user_id):
