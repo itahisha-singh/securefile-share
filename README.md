@@ -218,24 +218,17 @@ database, and a stronger document viewer.
 
 ## Screenshots
 
-Screenshots from the project presentation can be added here. Suggested
-files and captions:
+### 1. Upload and File Classification
+![Upload and Classification](upload-classification.png)
 
--   `screenshots/upload-classification.png` --- upload form and
-    classification options.
--   `screenshots/share-management.png` --- recipient, permission,
-    expiry, and active-share controls.
--   `screenshots/recipient-view.png` --- recipient view with
-    encryption-key entry.
--   `screenshots/security-tests.png` --- automated test run showing 18
-    passing tests.
+### 2. Secure Sharing and Permissions
+![Share Management](share-management.png)
 
-After adding the image files to the `screenshots/` folder, uncomment or
-add Markdown image references, for example:
+### 3. Recipient Access and Encryption
+![Recipient View](recipient-view.png)
 
-``` markdown
-![Upload and classification](screenshots/upload-classification.png)
-```
+### 4. Security Test Results
+![Security Tests](security-tests.png)
 
 ## Author
 
